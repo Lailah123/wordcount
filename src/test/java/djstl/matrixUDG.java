@@ -4,11 +4,12 @@ class matrixUDG {
     final int INF = Integer.MAX_VALUE;
     int numNodes;   //顶点数量
     int[][] matrix; //邻接矩阵
-    int[] prev ;
-    int[] dist ;
+    int[] prev;
+    int[] dist;
     char[] vexs;    //顶点
+
     //初始化图参数
-    public  matrixUDG (char[] vexs, int[][] matrix) {
+    public matrixUDG(char[] vexs, int[][] matrix) {
         this.vexs = vexs;
         this.matrix = matrix;
         numNodes = vexs.length;
@@ -27,11 +28,11 @@ class matrixUDG {
 
 
         //初始化类参数
-        boolean[] isVisited = new boolean[numNodes ];
+        boolean[] isVisited = new boolean[numNodes];
         for (int i = 0; i < isVisited.length; i++) {
             dist[i] = matrix[vs][i];
             prev[i] = -1;
-            if(dist[i] != INF) {
+            if (dist[i] != INF) {
                 prev[i] = vs;
             }
         }
@@ -42,7 +43,7 @@ class matrixUDG {
             int k = 0;
             //找到最近的节点
             for (int j = 0; j < isVisited.length; j++) {
-                if(!isVisited[j] && dist[j] < min ) {
+                if (!isVisited[j] && dist[j] < min) {
                     min = dist[j];
                     k = j;
                 }
@@ -52,32 +53,25 @@ class matrixUDG {
             //更新最近路径和父节点
             for (int j = 0; j < isVisited.length; j++) {
 
-                if(!isVisited[j] && matrix[k][j] != INF) {
-                    if(dist[j] > matrix[k][j] + dist[k]) {
-                        dist[j] =  matrix[k][j] + dist[k] ;
+                if (!isVisited[j] && matrix[k][j] != INF) {
+                    if (dist[j] > matrix[k][j] + dist[k]) {
+                        dist[j] = matrix[k][j] + dist[k];
                         prev[j] = k;
                     }
-
                 }
             }
-
-
-
         }
+
         //打印节点、路径、距离
         for (int i = 0; i < isVisited.length; i++) {
-            System.out.print( "节点" + i + "  " );
+            System.out.print("节点" + i + "  ");
             int a = i;
             System.out.print("路径：");
-
             while (a != vs) {
-                System.out.print(   vexs[prev[a]] +"  ");
+                System.out.print(vexs[prev[a]] + "  ");
                 a = prev[a];
             }
-
             System.out.println("距离" + dist[i]);
         }
-
     }
-
 }

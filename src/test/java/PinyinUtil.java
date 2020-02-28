@@ -39,38 +39,38 @@ public class PinyinUtil {
         String str = "";
         System.out.println("😎suisuipin开始了，开始了，四字成语准备。");
         str = sc.next();
-        while (str.length() < 4){
+        while (str.length() < 4) {
             System.out.println("建议重新输入");
             str = sc.next();
         }
-        String pinyin = ToPinyin(str.charAt(str.length()-1)+"");
+        String pinyin = ToPinyin(str.charAt(str.length() - 1) + "");
         String pinyin1 = "";
         String chenyu = "";
         int count = 0;
-        while (true){
-            System.out.println("尾字"+pinyin);
+        while (true) {
+            System.out.println("尾字" + pinyin);
             System.out.println("接龙🤓");
             str = sc.next();
-            if (str.length() < 4){
+            if (str.length() < 4) {
                 System.out.println("😖建议重新输入");
                 continue;
             }
-            if(str.length() > 4 || (str.charAt(0)==str.charAt(1)
-                    && str.charAt(0)==str.charAt(2)) || (str.charAt(3)==str.charAt(1) && str.charAt(3)==str.charAt(2))){
+            if (str.length() > 4 || (str.charAt(0) == str.charAt(1)
+                    && str.charAt(0) == str.charAt(2)) || (str.charAt(3) == str.charAt(1) && str.charAt(3) == str.charAt(2))) {
                 System.out.println("🥶成语 懂？");
                 continue;
             }
-            pinyin1 = ToPinyin(str.charAt(0)+"");
-            if (pinyin1.equals(pinyin)){
+            pinyin1 = ToPinyin(str.charAt(0) + "");
+            if (pinyin1.equals(pinyin)) {
                 System.out.println("😏完美，继续---");
-                pinyin = ToPinyin(str.charAt(str.length()-1)+"");
+                pinyin = ToPinyin(str.charAt(str.length() - 1) + "");
                 count++;
-            }else {
+            } else {
                 System.out.println("垃圾，会不会啊😡！！！");
                 return;
             }
-            if (count > 10){
-                System.out.println("可以呢小伙子🤗，你居然接了 "+count+" 次！");
+            if (count > 10) {
+                System.out.println("可以呢小伙子🤗，你居然接了 " + count + " 次！");
             }
 
         }
@@ -86,10 +86,11 @@ public class PinyinUtil {
 
     /**
      * 获取字符串拼音的第一个字母
+     *
      * @param chinese
      * @return
      */
-    public static String ToFirstChar(String chinese){
+    public static String ToFirstChar(String chinese) {
         String pinyinStr = "";
         char[] newChar = chinese.toCharArray();  //转为单个字符
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
@@ -102,7 +103,7 @@ public class PinyinUtil {
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
                     e.printStackTrace();
                 }
-            }else{
+            } else {
                 pinyinStr += newChar[i];
             }
         }
@@ -111,10 +112,11 @@ public class PinyinUtil {
 
     /**
      * 汉字转为拼音
+     *
      * @param chinese
      * @return
      */
-    public static String ToPinyin(String chinese){
+    public static String ToPinyin(String chinese) {
         String pinyinStr = "";
         char[] newChar = chinese.toCharArray();
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
@@ -127,7 +129,7 @@ public class PinyinUtil {
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
                     e.printStackTrace();
                 }
-            }else{
+            } else {
                 pinyinStr += newChar[i];
             }
         }
