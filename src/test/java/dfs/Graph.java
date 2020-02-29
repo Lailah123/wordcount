@@ -8,7 +8,6 @@ import java.util.Stack;
  * 图算法 BSF/DFS
  */
 public class Graph {
-    private int number = 9;
     private boolean[] flag;
     private String[] vertexs = { "A", "B", "C", "D", "E", "F", "G", "H", "I" };
     private int[][] edges = {
@@ -22,7 +21,14 @@ public class Graph {
             { 0, 0, 0, 1, 1, 0, 1, 0, 0 },
             { 0, 1, 1, 1, 0, 0, 0, 0, 0 }
     };
-
+    private int[][] edges1 = {
+            {0,1,0,0,1},
+            {1,0,1,0,0},
+            {0,1,0,1,0},
+            {0,0,1,0,1},
+            {1,0,0,1,0}
+    };
+    private int number = edges1.length;
     //深度优先遍历
     void DFSTraverse() {
         flag = new boolean[number];
@@ -45,25 +51,35 @@ public class Graph {
 
     void DFS_Map(){
         flag = new boolean[number];
+        int[] dis = new int[number];
+        int count = 0;
         Stack<Integer> stack =new Stack<Integer>();
         for(int i=0;i<number;i++){
+            //节点是否遍历
             if(flag[i]==false){
                 flag[i]=true;
                 System.out.print(vertexs[i]+" ");
                 stack.push(i);
             }
+            //深度探索，不满足条件回溯
             while(!stack.isEmpty()){
                 int k = stack.pop();
+                dis[k] = count;
+                count = 0;
                 for(int j=0;j<number;j++){
-                    if(edges[k][j]==1&&flag[j]==false){
+                    if(edges1[k][j]==1&&flag[j]==false){
                         flag[j]=true;
                         System.out.print(vertexs[j]+" ");
                         stack.push(j);
                         break;
+                    }else {
+                        count++;
                     }
                 }
-
             }
+        }
+        for (int i : dis) {
+            System.out.println(i);
         }
     }
 

@@ -22,91 +22,90 @@
 //}
 
 
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
-class Solution {
-    public int numIslands(char[][] grid) {
-        int islandNum = 0;
-        for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid[0].length; j++) {
-                if (grid[i][j] == '1') {
-                    infect(grid, i, j);
-                    islandNum++;
-                }
-            }
-        }
-        return islandNum;
-    }
-
-    //感染函数
-    public void infect(char[][] grid, int i, int j) {
-        //判断是否越过边界，是否是陆地
-        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] != '1') {
-            return;
-        }
-        grid[i][j] = '2';
-        draw(grid);
-        infect(grid, i + 1, j);
-        infect(grid, i - 1, j);
-        infect(grid, i, j + 1);
-        infect(grid, i, j - 1);
-    }
-
-    public void draw(char[][] a) {
-        for (int i = 0; i < a.length; i++) {
-            for (int j = 0; j < a[0].length; j++) {
-                if (a[i][j] == '0') {
-                    System.out.print("-");
-                }
-                if (a[i][j] == '1') {
-                    System.out.print("*");
-                }
-                if (a[i][j] == '2') {
-                    System.out.print("@");
-                }
-            }
-            System.out.println();
-        }
-    }
-
-    public static void main(String[] args) {
-        char[][] a = new char[][]{{'1', '1', '1', '1', '0'}, {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}};
-        new Solution().draw(a);
-        System.out.println(new Solution().numIslands(a));
-//        int m=(int)(Math.random()*100+1);
-//        Scanner sc = new Scanner(System.in);
-//        int count = 0;
-//        while(true){
-//            System.out.println("渣渣禾，请输入一个数字");
-//            int x = 0;
-//            String regx ="\\d++";
-//            try {
-//                x = Integer.parseInt(sc.next(regx));
-//            } catch (InputMismatchException e) {
-//                e.printStackTrace();
+//class Solution {
+//    public int numIslands(char[][] grid) {
+//        int islandNum = 0;
+//        for (int i = 0; i < grid.length; i++) {
+//            for (int j = 0; j < grid[0].length; j++) {
+//                if (grid[i][j] == '1') {
+//                    infect(grid, i, j);
+//                    islandNum++;
+//                }
 //            }
-//            if(x>m){
-//                System.out.println("猜大了");
-//            }
-//            if(x<m){
-//                System.out.println("猜小了");
-//            }
-//            if(x==m){
-//                System.out.println("猜对了");
-//                break;
-//            }
-//            count++;
 //        }
-//        if(count > 4){
-//            System.out.println("垃圾，这么慢");
-//            System.out.println("你居然猜了 "+count+" 次！");
-//            System.out.println("恕我直言 **");
-//        }else {
-//            System.out.println("可以兄弟！");
+//        return islandNum;
+//    }
+//
+//    //感染函数
+//    public void infect(char[][] grid, int i, int j) {
+//        //判断是否越过边界，是否是陆地
+//        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] != '1') {
+//            return;
 //        }
-    }
-}
+//        grid[i][j] = '2';
+//        draw(grid);
+//        infect(grid, i + 1, j);
+//        infect(grid, i - 1, j);
+//        infect(grid, i, j + 1);
+//        infect(grid, i, j - 1);
+//    }
+//
+//    public void draw(char[][] a) {
+//        for (int i = 0; i < a.length; i++) {
+//            for (int j = 0; j < a[0].length; j++) {
+//                if (a[i][j] == '0') {
+//                    System.out.print("-");
+//                }
+//                if (a[i][j] == '1') {
+//                    System.out.print("*");
+//                }
+//                if (a[i][j] == '2') {
+//                    System.out.print("@");
+//                }
+//            }
+//            System.out.println();
+//        }
+//    }
+//
+//    public static void main(String[] args) {
+//        char[][] a = new char[][]{{'1', '1', '1', '1', '0'}, {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}};
+//        new Solution().draw(a);
+//        System.out.println(new Solution().numIslands(a));
+////        int m=(int)(Math.random()*100+1);
+////        Scanner sc = new Scanner(System.in);
+////        int count = 0;
+////        while(true){
+////            System.out.println("渣渣禾，请输入一个数字");
+////            int x = 0;
+////            String regx ="\\d++";
+////            try {
+////                x = Integer.parseInt(sc.next(regx));
+////            } catch (InputMismatchException e) {
+////                e.printStackTrace();
+////            }
+////            if(x>m){
+////                System.out.println("猜大了");
+////            }
+////            if(x<m){
+////                System.out.println("猜小了");
+////            }
+////            if(x==m){
+////                System.out.println("猜对了");
+////                break;
+////            }
+////            count++;
+////        }
+////        if(count > 4){
+////            System.out.println("垃圾，这么慢");
+////            System.out.println("你居然猜了 "+count+" 次！");
+////            System.out.println("恕我直言 **");
+////        }else {
+////            System.out.println("可以兄弟！");
+////        }
+//    }
+//}
 
 //import java.util.ArrayList;
 //import java.util.List;
@@ -160,3 +159,51 @@ class Solution {
 //        return ans;
 //    }
 //}
+
+/**
+ * 罗马数字转int
+ */
+class Solution {
+    public int romanToInt(String s) {
+        int result = 0;
+        char[] romanMap = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+        int[] intMap = {1, 5, 10, 50, 100, 500, 1000};
+        Map<Character, Integer> map = new HashMap<Character, Integer>(8);
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        map.put('D', 500);
+        map.put('M', 1000);
+        int len = s.length();
+        for (int i = 0; i < s.length(); i++) {
+            //判断后一位是否大于前一位
+//            if ((i + 1) < s.length() && map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+            if ((i + 1) < len && intMap[getIndex(romanMap,s.charAt(i))] < intMap[getIndex(romanMap,s.charAt(i+1))]) {
+//                int x = String.valueOf(map.get(s.charAt(i + 1) + "")).length();
+//                result += (Math.pow(10, x - 1) - Math.pow(10, x - 2));
+//                result += (map.get(s.charAt(i+1))-map.get(s.charAt(i)));
+                result += intMap[getIndex(romanMap,s.charAt(i+1))] - intMap[getIndex(romanMap,s.charAt(i))];
+                //跳过后一位，IV为一个整体
+                ++i;
+            } else {
+//                result += map.get(s.charAt(i));
+                result += intMap[getIndex(romanMap,s.charAt(i))];
+            }
+        }
+        return result;
+    }
+
+    public int getIndex(char[] arr, char value) {
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] == value) {
+                return i;
+            }
+        }
+        return -1;//如果未找到返回-1
+    }
+    public static void main(String[] args) {
+        System.out.println(new Solution().romanToInt("MCMXCIV"));
+    }
+}
